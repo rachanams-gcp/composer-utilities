@@ -214,7 +214,8 @@ python3 -m twine upload \
 ```bash
 BUCKET=$(gcloud composer environments describe composer-3-airflow-3 \
     --location=us-central1 \
-    --format="value(config.storageConfig.bucket)")
+    --format="value(storageConfig.bucket)")
+BUCKET="${BUCKET#gs://}"
 
 cat << EOF > pip.conf
 [global]
