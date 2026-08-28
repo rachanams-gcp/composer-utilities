@@ -249,12 +249,23 @@ python3 -m unittest discover -s tests
 
 ### 2. Live Cluster Verification Across the 3 Tiers
 
-#### Step 1: Deploy Demonstration DAGs to Cloud Composer
-If you already have the repository cloned, navigate to the `composer_cluster_policy` directory and copy the demonstration DAGs:
+#### Step 1: Clone Repository & Deploy Demonstration DAGs
 
+##### If cloning for the first time:
 ```bash
-cd composer_cluster_policy
+git clone https://github.com/GoogleCloudPlatform/composer-utilities.git
+cd composer-utilities/composer_cluster_policy
+```
 
+##### If repository is already cloned:
+```bash
+cd composer-utilities/composer_cluster_policy
+# Or if already in the repo root:
+# cd composer_cluster_policy
+```
+
+##### Sync Demonstration DAGs to Cloud Storage:
+```bash
 BUCKET="$(gcloud composer environments describe large-central1-airflow3 \
     --location=us-central1 \
     --format="value(storageConfig.bucket)")"
